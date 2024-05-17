@@ -110,7 +110,7 @@ if __name__ == '__main__':
     numTestImgs = 20
 
     # Specify timeout [in seconds].
-    timeout = 1
+    timeout = 30
 
     # Initialize instances.
     instances = []
