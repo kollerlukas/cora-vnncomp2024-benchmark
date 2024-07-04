@@ -10,6 +10,11 @@ import torchvision.transforms as trans
 from torch.utils.data import DataLoader
 from torch.utils.data import sampler
 
+# Force download of MNIST from aws mirror.
+dset.MNIST.mirrors = [
+  # "http://yann.lecun.com/exdb/mnist/",
+  "https://ossci-datasets.s3.amazonaws.com/mnist/",
+]
 
 def obtainTestImgs(nets,Xs,Ts,numImgs):
   # Create onnx-runtime sessions.
