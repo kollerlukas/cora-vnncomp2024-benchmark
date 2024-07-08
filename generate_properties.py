@@ -106,7 +106,7 @@ if __name__ == '__main__':
     torch.random.manual_seed(seed)
 
     # Path to networks.
-    nets = lambda dsname: [f'./nns/{dsname}-point.onnx',f'./nns/{dsname}-trades.onnx',f'./nns/{dsname}-set.onnx']
+    nets = lambda dsname: [f'./onnx/{dsname}-point.onnx',f'./onnx/{dsname}-trades.onnx',f'./onnx/{dsname}-set.onnx']
 
     # Specify path for .vnnlib files
     savePath = f'./benchmark-files'
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         xiu = torch.clip(xi + epsilon,0,1)
         # Construct filename
         instName = f'{ds}-img{id}.vnnlib'
-        filename = f'{savePath}/{instName}'
+        filename = f'vnnlib/{instName}'
         writeVnnlib(filename,instName,nIn,nOut,xil,xiu,ti)
         # Store instances.
         [instances.append([net,filename,timeout]) for net in nets(ds)]
@@ -147,7 +147,7 @@ if __name__ == '__main__':
       print(f'done')
 
     # Create instances.csv file.
-    with open(f'{savePath}/instances.csv','w',newline='') as instCsv:
+    with open(f'instances.csv','w',newline='') as instCsv:
       writer = csv.writer(instCsv)
       for instance in instances:
         writer.writerow(instance)
